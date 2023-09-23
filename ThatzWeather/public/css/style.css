@@ -1,3 +1,100 @@
-h1{
-    color: red;
+*{
+    font-family: 'Handjet', cursive;
+    font-family: 'Mulish', sans-serif;
+    color: white;
+}
+*:focus{
+    outline: none;
+}
+.centerImg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.centerText{
+    text-align: center;
+}
+html{
+    background: url(../img/home/FondoDesk.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+::placeholder{
+    opacity: 1;
+}
+::-webkit-input-placeholder {
+    color: #ffffff;
+  }
+/* Home page */
+#logo{
+    margin-top: 4%;
+}
+#homeText{
+    margin-top: 8%;
+    margin-left: 34%;
+    margin-right: 34%;
+    font-weight: bold;
+    margin-bottom: 3.5%;
+    font-size: 18px;
+}
+/* input del formulario */
+#homeInput{
+    padding: 5px;
+    font-size: 16px;
+    background-color:transparent;
+    color: #ffffff;
+    border-style: solid;
+    border-radius: 3px;
+    width: 35%;
+    margin: auto;
+    display: block;
+    font-size: 18px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 1%;
+}
+.homeInput{
+    border-width: 1.5px;
+    border-color: #ffffff;
+}
+.homeInputError{
+    border-color: red;
+    border-width: 2px;
+}
+/* Botón */
+#homeButton{
+    margin-top: 2%;
+    width: 36.5%;
+    text-align: center;
+    font-size: 24px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    background-color: #00bde0;
+    color: #ffffff;
+    padding-top: .7%;
+    padding-bottom: .5%;
+    border-radius: 4px; 
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
+    border-width: 0;
+}
+#homeButton:hover{
+    background-color: #03aac8;
+}
+#searchIcon{
+    margin: 0%;
+    padding: 0%;
+    width: auto;
+    float: right;
+    margin-right: 2%;
+}
+/* Texto de abajo */
+#bottomText{
+    margin-top: 5%;
+    margin-left: 34%;
+    margin-right: 34%;
+    margin-bottom: 3.5%;
 }
