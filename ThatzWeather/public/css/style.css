@@ -55,7 +55,7 @@ input::-webkit-inner-spin-button {
     font-size: 18px;
 }
 /* input del formulario */
-#homeInput{
+.homeInput{
     padding: 5px;
     font-size: 16px;
     background-color:transparent;
@@ -69,8 +69,6 @@ input::-webkit-inner-spin-button {
     padding-top: 1%;
     padding-bottom: 1%;
     padding-left: 1%;
-}
-.homeInput{
     border-width: 1.5px;
     border-color: #ffffff;
 }
@@ -126,6 +124,21 @@ input::-webkit-inner-spin-button {
     font-size: 20px;
     padding-left: 16%;
 }
+.FormResultado{
+    margin-left: 0%;
+    float: left;
+}
+.mainInfoRow{
+    margin-top: 3.5%;
+}
+.ciudadInfo{
+    margin-bottom: 0%;
+    margin-top: 0%;
+    text-align: left;
+    font-size: 15px;
+    padding-top: 0;
+    margin-left: 50%;
+}
 /* Estructura principal de recuadros */
 .recuadros{
     -webkit-box-shadow: 0px 0px 14px 8px rgba(0,0,0,0.19);
@@ -149,4 +162,78 @@ input::-webkit-inner-spin-button {
     width: 35%;
     float: left;
     position: relative;
+}
+.column2{
+    float: left;
+    position: relative;
+}
+.colum2-60{
+    width: 70%;
+}
+.colum2-40{
+    width: 30%;
+}
+/* Buscador en datos */
+.buscadorDatos{
+    margin: 0%;
+    padding: 0%;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 0;
+    font-size: 13px;
+    opacity: .8;
+    top: 20%;
+    position: absolute;
+}
+.btnBuscar{
+    margin-top: 4%;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 0;
+    opacity: .8;
+    cursor: pointer;
+}
+/* Información del clima */
+.heightRow{
+    height: 80%;
+}
+/* Lineas verticales */
+.vlPos1 {
+    margin-left: 33%;
+}
+.vl{
+    border-left: 2px solid white;
+    margin-top: 2.5%;
+    height: 70%;
+    position: absolute;
+    opacity: .5;
+}
+.vlPos2 {
+    margin-left: 66%;
+}
+/* Titulo de secciones */
+.tituloSec{
+    padding-top: 3%;
+}
+/* Clima ahora */
+.mainClimaCol{
+    width: 33%;
+    float: left;
+    position: relative;
+    height: 100%;
+}
+
+/* Clima hoy horas */
+.hoyClimaCol{
+    width: 33%;
+    float: left;
+    position: relative;
+    height: 100%;
+}
+/* Clima proximos dias */
+.nextClimaCol{
+    width: 33%;
+    float: left;
+    position: relative;
+    height: 100%;
 }

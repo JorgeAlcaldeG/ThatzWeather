@@ -15,15 +15,38 @@
     // var_dump($climaDato);
     $date = "";
     $ciudadNom = $climaDato["city"]["name"];
-    // echo "<p>Ciudad: $ciudadNom</p>";
-    // echo "<p>Código postal: $cp</p>";
     ?>
     <img src="{{ asset('img/home/logo.png') }}" class="centerImg" id="logo">
     <p class="centerText" id="txtLogo">¡Que la lluvia no te pare!</p>
     <div class="row">
         <div class="column-main recuadros">
-            <p>Código postal: <b>{{$cp}}</b></p>
-            <p>Ciudad: <b>{{$ciudadNom}}</b></p>
+            <div class="row mainInfoRow">
+                <div class="column2 colum2-60">
+                    <p class="ciudadInfo">Código postal: <b>{{$cp}}</b></p>
+                    <p class="ciudadInfo">Ciudad: <b>{{$ciudadNom}}</b></p>
+                </div>
+                <div class="column2 colum2-40">
+                    <form action=/data method="get" class="FormResultado">
+                        <button type="submit" class="btnBuscar"><img src="{{ asset('img/home/searchIcon.png') }}" id="searchIcon"></button>
+                        <input type="number" name="cp" id="homeInput" class="buscadorDatos" placeholder="Buscar otra zona">
+                    </form>
+                </div>
+            </div>
+            <!-- Información del clima -->
+            <div class="row heightRow">
+                <div class="vl vlPos1">
+                </div>
+                <div class="vl vlPos2"></div>
+                <div class="mainClimaCol">
+                    <p class="centerText tituloSec">Ahora</p>
+                </div>
+                <div class="hoyClimaCol">
+                    <p class="centerText tituloSec">Próximas horas</p>
+                </div>
+                <div class="nextClimaCol">
+                    <p class="centerText tituloSec">Próximas 5 días</p>
+                </div>
+            </div>
         </div>
         <div class="column-top5 recuadros">
             <h1>Top 5 de las zonas más frías según tus búsquedas</h1>
