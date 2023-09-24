@@ -26,7 +26,15 @@ html{
 }
 ::-webkit-input-placeholder {
     color: #ffffff;
-  }
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 /* Home page */
 #logo{
     margin-top: 4%;
@@ -63,6 +71,10 @@ html{
     border-color: red;
     border-width: 2px;
 }
+#errorText{
+    visibility:hidden;
+    color: red;
+}
 /* Botón */
 #homeButton{
     margin-top: 2%;
@@ -93,7 +105,7 @@ html{
 }
 /* Texto de abajo */
 #bottomText{
-    margin-top: 5%;
+    margin-top: 3.5%;
     margin-left: 34%;
     margin-right: 34%;
     margin-bottom: 3.5%;
