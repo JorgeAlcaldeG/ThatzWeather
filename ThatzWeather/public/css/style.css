@@ -6,6 +6,12 @@
 *:focus{
     outline: none;
 }
+.row:after {
+    content: "";
+    display: flex;
+    flex-wrap: wrap;
+    clear: both;
+}
 .centerImg{
     display: block;
     margin-left: auto;
@@ -37,6 +43,7 @@ input::-webkit-inner-spin-button {
 }
 /* Home page */
 #logo{
+    width: 30%;
     margin-top: 4%;
 }
 #homeText{
@@ -109,4 +116,37 @@ input::-webkit-inner-spin-button {
     margin-left: 34%;
     margin-right: 34%;
     margin-bottom: 3.5%;
+}
+/* Página de resultados */
+/* Texto bajo el logo */
+#txtLogo{
+    padding-top: 0%;
+    margin-top: 0%;
+    margin-bottom: 2%;
+    font-size: 20px;
+    padding-left: 16%;
+}
+/* Estructura principal de recuadros */
+.recuadros{
+    -webkit-box-shadow: 0px 0px 14px 8px rgba(0,0,0,0.19);
+    -moz-box-shadow: 0px 0px 14px 8px rgba(0,0,0,0.19);
+    box-shadow: 0px 0px 14px 8px rgba(0,0,0,0.19);
+    border-radius: 6px;
+    background-color: #487882;
+    text-align: center;
+    height:50vh;
+}
+.column-main {
+    margin-left: 3%;
+    margin-right: .5%;
+    width: 56%;
+    float: left;
+    position: relative;
+}
+.column-top5{
+    margin-left: .5%;
+    margin-right: 4%;
+    width: 35%;
+    float: left;
+    position: relative;
 }
