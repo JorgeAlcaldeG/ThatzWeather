@@ -42,30 +42,59 @@
             echo"</div>";
         }
     }
+    function traducirDia($fecha){
+        $fecha = date('l', strtotime(substr($fecha,0,10))); 
+        switch ($fecha) {
+            case 'Monday':
+                return 'Lunes';
+                break;
+            case 'Tuesday':
+                return 'Martes';
+                break;
+            case 'Wednesday':
+                return 'Miércoles';
+                break;
+            case 'Thursday':
+                return 'Jueves';
+                break;
+            case 'Friday':
+                return 'Viernes';
+                break;
+            case 'Saturday':
+                return 'Sábado';
+                break;   
+            case 'Sunday':
+                return 'Domingo';
+                break;                      
+            default:
+
+                break;
+        }
+    }
     function calcularDias($climaDato){
         $fechaHoy= substr($climaDato['list'][0]["dt_txt"],0,10);
         $date = "";
-        for ($i=0; $i < 7; $i++) { 
-                if($date != substr($climaDato['list'][$i]["dt_txt"],0,10) && $fechaHoy != substr($climaDato['list'][0]["dt_txt"],0,10)){
-                    echo substr($climaDato['list'][$i]["dt_txt"],0,10);
-                    echo"</br>";
+        echo"<div class='row'>";
+            foreach($climaDato['list'] as $day) {
+                if($date != substr($day["dt_txt"],0,10) && $fechaHoy != substr($day["dt_txt"],0,10)){
+                    echo'<div class="column5 top5Row">';
+                        $date = substr($day["dt_txt"],0,10);
+                        echo "<p class='datosHoraText'>".traducirDia($day['dt_txt'])."</p>";
+                        // echo date('l', strtotime(substr($day["dt_txt"],0,10)));
+                        // echo "</br>";
+                        foreach($day["weather"] as $clima){
+                            $climaImg = strtolower($clima["main"]).".svg";
+                            echo'<img class ="datos5diasIcon" src='.asset("img/icons/clima/$climaImg").' alt="">';
+                            echo '<p class="datosHoraText">'.$clima['description']." </p>";
+                            if(strlen($clima['description']) < 6 ){
+                                echo"<div class='divStrCorta'></div>";
+                            }
+                        }
+                        echo '<p class="datosHoraTemp">'. round($day["main"]["temp"])."º </p>";
+                    echo"</div>";
                 }
-        }
-        // foreach($climaDato['list'] as $day) {
-        //     if($date != substr($day["dt_txt"],0,10) && $fechaHoy != substr($day["dt_txt"],0,10)){
-        //         $date = substr($day["dt_txt"],0,10);
-        //         echo"</br>";
-        //         echo $day["dt_txt"];
-        //         echo "</br>";
-        //         echo($day["main"]["temp"]);
-        //         echo "</br>";
-        //         foreach($day["weather"] as $clima){
-        //             echo $clima["description"];  
-        //         }
-        //         echo "</br>";
-        //         echo "</br>";
-        //     }
-        // }
+            }
+        echo'</div>';
     }
     // calcularDias($climaDato);
     $date = "";
@@ -81,9 +110,10 @@
                     <p class="ciudadInfo">Ciudad: <b>{{$ciudadNom}}</b></p>
                 </div>
                 <div class="column2 colum2-40">
-                    <form action=/data method="get" class="FormResultado">
+                    <form action=/data method="get" class="FormResultado" onsubmit="return validarHome()">
                         <button type="submit" class="btnBuscar"><img src="{{ asset('img/home/searchIcon.png') }}" id="searchIcon"></button>
                         <input type="number" name="cp" id="homeInput" class="buscadorDatos" placeholder="Buscar otra zona">
+                        <span class="errorSearch" id="errorText">¡El código postal indicado no es correcto!</span>
                     </form>
                 </div>
             </div>
@@ -114,30 +144,16 @@
                     </div>
                 </div>
                 <div class="nextClimaCol">
-                    <p class="centerText tituloSec">Próximas 5 días</p>
+                    <p class="centerText tituloSec">Próximos 5 días</p>
+                    {{calcularDias($climaDato);}}
                 </div>
             </div>
         </div>
         <div class="column-top5 recuadros">
-            <h1>Top 5 de las zonas más frías según tus búsquedas</h1>
+            <h1 class="top5Titulo">Top 5 de las zonas más frías según tus búsquedas</h1>
+            <hr class="lVertical">
         </div>
     </div>
-    <?php
-    // function CalcularClima(){
-    //     foreach($climaDato['list'] as $day) {
-    //         if($date != substr($day["dt_txt"],0,10)){
-    //             $date = substr($day["dt_txt"],0,10);
-    //             echo($day["main"]["temp"]);
-    //             foreach($day["weather"] as $clima){
-    //                 echo $clima["description"];  
-    //             }
-    //             echo "</br>";
-    //             echo "</br>";
-    //             echo "</br>";
-    //             echo "</br>";
-    //         }
-    //       }
-    // }
-    ?>
+    <script src="js/home.js"></script>
 </body>
 </html>

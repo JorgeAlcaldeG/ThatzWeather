@@ -78,7 +78,7 @@ input::-webkit-inner-spin-button {
 }
 #errorText{
     visibility:hidden;
-    color: red;
+    /* color: red; */
 }
 /* Botón */
 #homeButton{
@@ -185,6 +185,11 @@ input::-webkit-inner-spin-button {
     top: 20%;
     position: absolute;
 }
+.errorSearch{
+    color: white;
+    font-size: 10px;
+    opacity: 1;
+}
 .btnBuscar{
     margin-top: 4%;
     background-color: transparent;
@@ -278,7 +283,7 @@ input::-webkit-inner-spin-button {
 .vlPosHoras1 {
     margin-top: 5%;
     height: 45%;
-    margin-left: 23%;
+    margin-left: 25%;
 }
 .vlPosHoras2 {
     margin-top: 5%;
@@ -296,4 +301,37 @@ input::-webkit-inner-spin-button {
     float: left;
     position: relative;
     height: 100%;
+    padding-left: .5%;
+    padding-right: .5%;
+}
+.top5Row{
+    background-color: #3b737e;
+    float: right;
+}
+.column5{
+    width: 20%;
+    float: left;
+    position: relative;
+    height: 100%;
+    margin: 0%;
+}
+.datos5diasIcon{
+    width: 50%;
+    filter: invert(1);
+}
+.divStrCorta{
+    height: .4vh;
+}
+/* Top 5 */
+.top5Titulo{
+    font-size: 18px;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-weight: normal;
+}
+
+.lVertical{
+    margin-right: 5%;
+    margin-left: 5%;
+    opacity: .4;
 }

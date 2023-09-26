@@ -15,7 +15,6 @@
         <button type="submit" class="center" id="homeButton">Buscar <img src="{{ asset('img/home/searchIcon.png') }}" id="searchIcon"></button>
     </form>
     <p class="centerText" id="bottomText">¡Que la lluvia no te pare!</p>
-    <script src="js/home.js">
-    </script>
+    <script src="js/home.js"></script>
 </body>
 </html>
