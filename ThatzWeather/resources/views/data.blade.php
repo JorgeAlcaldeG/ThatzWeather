@@ -32,10 +32,14 @@
                 switch ($climaDato['list'][$i]["weather"]["0"]["description"]) {
                     case 'algo de nubes':
                         echo "<p class='datosHoraText'>Nubes</p>";
+                        echo"<div class='divStrCorta'></div>";
                         break;
                     
                     default:
                         echo "<p class='datosHoraText'>".ucfirst($climaDato['list'][$i]["weather"]["0"]["description"])."</p>";
+                        if(strlen($climaDato['list'][$i]["weather"]["0"]["description"]) < 12 ){
+                            echo"<div class='divStrCorta'></div>";
+                        }
                         break;
                 }
                 echo "<p class='datosHoraTemp'>".round($climaDato['list'][$i]["main"]["temp"])."º</p>";
