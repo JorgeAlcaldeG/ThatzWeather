@@ -8,6 +8,13 @@
 </head>
 <body>
     <?php
+    if(empty($_GET) || $_GET["cp"]==""){
+        header("Location: /");
+        exit();
+    }
+    use App\Models\Top5Climas;
+    $TopClima = Top5Climas::orderBy('temp', 'ASC')->get();
+    // var_dump($TopClima);
     $cp =e($_GET["cp"]);
     $apiKey='1c227a86c4d15a26fe3c467899055618';
     $data="https://api.openweathermap.org/data/2.5/forecast?q=$cp&appid=$apiKey&units=metric&lang=es";
@@ -28,19 +35,9 @@
                 }
                 $horaIcon = strtolower($climaDato['list'][$i]["weather"]["0"]["main"]).".svg";
                 echo'<img class ="datosHoraIcon" src='.asset("img/icons/clima/$horaIcon").' alt="">';
-                // echo strtolower($climaDato['list'][$i]["weather"]["0"]["main"]);
-                switch ($climaDato['list'][$i]["weather"]["0"]["description"]) {
-                    case 'algo de nubes':
-                        echo "<p class='datosHoraText'>Nubes</p>";
-                        echo"<div class='divStrCorta'></div>";
-                        break;
-                    
-                    default:
-                        echo "<p class='datosHoraText'>".ucfirst($climaDato['list'][$i]["weather"]["0"]["description"])."</p>";
-                        if(strlen($climaDato['list'][$i]["weather"]["0"]["description"]) < 12 ){
-                            echo"<div class='divStrCorta'></div>";
-                        }
-                        break;
+                echo "<p class='datosHoraText'>".ucfirst($climaDato['list'][$i]["weather"]["0"]["description"])."</p>";
+                if($climaDato['list'][$i]["weather"]["0"]["description"] == 'cielo claro' ){
+                    echo"<div class='divStrCorta'></div>";
                 }
                 echo "<p class='datosHoraTemp'>".round($climaDato['list'][$i]["main"]["temp"])."º</p>";
             echo"</div>";
@@ -89,7 +86,7 @@
                         foreach($day["weather"] as $clima){
                             $climaImg = strtolower($clima["main"]).".svg";
                             echo'<img class ="datos5diasIcon" src='.asset("img/icons/clima/$climaImg").' alt="">';
-                            echo '<p class="datosHoraText">'.$clima['description']." </p>";
+                            echo '<p class="datosHoraText">'.ucfirst($clima['description'])." </p>";
                             if(strlen($clima['description']) < 6 ){
                                 echo"<div class='divStrCorta'></div>";
                             }
@@ -155,7 +152,30 @@
         </div>
         <div class="column-top5 recuadros">
             <h1 class="top5Titulo">Top 5 de las zonas más frías según tus búsquedas</h1>
-            <hr class="lVertical">
+            <?php
+                    for ($i=0; $i < 5; $i++) { 
+                        echo'<div class="row">';
+                            $ciudad = $TopClima->pluck('ciudad')[$i];
+                            $temp = $TopClima->pluck('temp')[$i];
+                            $codCP= $TopClima->pluck('cp')[$i];
+                            $topPos = $i;
+                            $topPos++;
+                            echo'<div class="columnTop1">';
+                                echo "<p class='top5Pos'>".$topPos.". </p>";
+                            echo"</div>";
+                            echo'<div class="columnTop2">';
+                                echo "<p class='top5Temp'>".$temp."º</p>";
+                            echo"</div>";
+                            echo'<div class="columnTop3">';
+                                echo "<p class='ciudadInfoTop5'>CP: <b>".$codCP."</b></p>";
+                                echo "<p class='ciudadInfoTop5'>Ciudad: <b>".$ciudad."</b></p>";
+                            echo"</div>
+                        </div>";
+                        if($i!=4){
+                            echo"<hr class='lVertical'>";
+                        }
+                    }
+                ?>
         </div>
     </div>
     <script src="js/home.js"></script>

@@ -147,7 +147,7 @@ input::-webkit-inner-spin-button {
     border-radius: 6px;
     background-color: #487882;
     text-align: center;
-    height:50vh;
+    height:57vh;
 }
 .column-main {
     margin-left: 3%;
@@ -334,4 +334,44 @@ input::-webkit-inner-spin-button {
     margin-right: 5%;
     margin-left: 5%;
     opacity: .4;
+}
+.columnTop1{
+    width: 10%;
+    float: left;
+    position: relative;
+}
+.columnTop2{
+    width: 20%;
+    float: left;
+    position: relative;
+}
+.columnTop3{
+    width: 70%;
+    float: left;
+    position: relative;
+}
+.top5Pos{
+    padding-top: 45%;
+    font-size: 20px;
+    float: left;
+    margin-left: 40%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+.ciudadInfoTop5{
+    padding-top: 1%;
+    margin-bottom: 1%;
+    font-size: 17px;
+    margin-bottom: 0%;
+    margin-top: 0%;
+    text-align: justify;
+    padding-left: 30%;
+}
+.top5Temp{
+    margin-bottom: 0%;
+    font-size: 30px;
+    font-weight: bold;
+    float: left;
+    margin-top: 17%;
+    padding-left:40%;
 }
