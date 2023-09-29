@@ -72,7 +72,7 @@
                 break;
         }
     }
-    function calcularDias($climaDato){
+    function calcularDias($climaDato,$cp,$ciudadNom){
         $fechaHoy= substr($climaDato['list'][0]["dt_txt"],0,10);
         $date = "";
         echo"<div class='row'>";
@@ -92,6 +92,8 @@
                             }
                         }
                         echo '<p class="datosHoraTemp">'. round($day["main"]["temp"])."º </p>";
+                        $input = ['temp' => round($day["main"]["temp"]),'cp' => $cp,'ciudad' => $ciudadNom];
+                        Top5Climas::create($input);
                     echo"</div>";
                 }
             }
@@ -100,6 +102,9 @@
     // calcularDias($climaDato);
     $date = "";
     $ciudadNom = $climaDato["city"]["name"];
+    
+    $input = ['temp' => round($climaAhora["main"]["temp"]),'cp' => $cp,'ciudad' => $ciudadNom];
+    Top5Climas::create($input);
     ?>
     <img src="{{ asset('img/home/logo.png') }}" class="centerImg" id="logo">
     <p class="centerText" id="txtLogo">¡Que la lluvia no te pare!</p>
@@ -146,7 +151,7 @@
                 </div>
                 <div class="nextClimaCol">
                     <p class="centerText tituloSec">Próximos 5 días</p>
-                    {{calcularDias($climaDato);}}
+                    {{calcularDias($climaDato,$cp,$ciudadNom);}}
                 </div>
             </div>
         </div>

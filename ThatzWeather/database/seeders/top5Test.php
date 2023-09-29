@@ -20,23 +20,23 @@ class top5Test extends Seeder
             'ciudad'=> 'Barcelona',
         ]);
         Top5Climas::create([
-            'temp'=> '25',
-            'cp'=> '08906',
-            'ciudad'=> 'Madrid',
+            'temp'=> '23',
+            'cp'=> '36161',
+            'ciudad'=> 'Pontevedra',
         ]);
         Top5Climas::create([
-            'temp'=> '-15',
-            'cp'=> '08721',
+            'temp'=> '-5',
+            'cp'=> '04004',
             'ciudad'=> 'Almería',
         ]);
         Top5Climas::create([
-            'temp'=> '-2',
-            'cp'=> '08621',
+            'temp'=> '26',
+            'cp'=> '25199',
             'ciudad'=> 'Lleida',
         ]);
         Top5Climas::create([
             'temp'=> '22',
-            'cp'=> '05621',
+            'cp'=> '37008',
             'ciudad'=> 'Salamanca',
         ]);
     }

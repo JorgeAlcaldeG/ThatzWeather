@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Top5Climas extends Model
 {
     protected $table = 'top5_climas';
+    protected $fillable = ['temp','cp','ciudad'];
     use HasFactory;
 }
