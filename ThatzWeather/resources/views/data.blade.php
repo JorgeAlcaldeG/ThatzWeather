@@ -8,20 +8,22 @@
 </head>
 <body>
     <?php
+    // Comprobamos si se envían datos
     if(empty($_GET) || $_GET["cp"]==""){
         header("Location: /");
         exit();
     }
     use App\Models\Top5Climas;
+    // Variables para la conexión de la base de datos y la API
     $TopClima = Top5Climas::orderBy('temp', 'ASC')->get();
-    // var_dump($TopClima);
     $cp =e($_GET["cp"]);
     $apiKey='1c227a86c4d15a26fe3c467899055618';
     $data="https://api.openweathermap.org/data/2.5/forecast?q=$cp&appid=$apiKey&units=metric&lang=es";
     $climaDato=json_decode(file_get_contents($data),true);
-    // var_dump($climaDato);
+    // Datos de hoy
     $climaAhora = $climaDato['list'][0];
     $climaAhoraIcon = strtolower($climaAhora["weather"][0]["main"]).".svg";
+    // Esta función  muestra los datos del clima de las próximas horas
     function CalcularClima($climaDato){
         $first = true;
         for ($i=0; $i < 4; $i++) { 
@@ -31,7 +33,6 @@
                     $first = false;
                 }else{
                     echo "<p class='datosHoraText'>".substr($climaDato['list'][$i]["dt_txt"],10,6)."</p>";
-                    // echo substr($climaDato['list'][$i]["dt_txt"],10,6);
                 }
                 $horaIcon = strtolower($climaDato['list'][$i]["weather"]["0"]["main"]).".svg";
                 echo'<img class ="datosHoraIcon" src='.asset("img/icons/clima/$horaIcon").' alt="">';
@@ -43,6 +44,7 @@
             echo"</div>";
         }
     }
+    // Esta función es necesaria para traducir las fechas que devuelve la API en dia de la semana
     function traducirDia($fecha){
         $fecha = date('l', strtotime(substr($fecha,0,10))); 
         switch ($fecha) {
@@ -72,6 +74,7 @@
                 break;
         }
     }
+    // Esta función muestra los datos de los proximos dias
     function calcularDias($climaDato,$cp,$ciudadNom){
         $fechaHoy= substr($climaDato['list'][0]["dt_txt"],0,10);
         $date = "";
@@ -81,8 +84,6 @@
                     echo'<div class="column5 top5Row">';
                         $date = substr($day["dt_txt"],0,10);
                         echo "<p class='datosHoraText'>".traducirDia($day['dt_txt'])."</p>";
-                        // echo date('l', strtotime(substr($day["dt_txt"],0,10)));
-                        // echo "</br>";
                         foreach($day["weather"] as $clima){
                             $climaImg = strtolower($clima["main"]).".svg";
                             echo'<img class ="datos5diasIcon" src='.asset("img/icons/clima/$climaImg").' alt="">';
@@ -92,30 +93,35 @@
                             }
                         }
                         echo '<p class="datosHoraTemp">'. round($day["main"]["temp"])."º </p>";
+                        // Array con los datos que subiremos a la BD
                         $input = ['temp' => round($day["main"]["temp"]),'cp' => $cp,'ciudad' => $ciudadNom];
+                        // Subimos los datos a la BD
                         Top5Climas::create($input);
                     echo"</div>";
                 }
             }
         echo'</div>';
     }
-    // calcularDias($climaDato);
     $date = "";
     $ciudadNom = $climaDato["city"]["name"];
-    
+    // Array con los datos que subiremos a la BD
     $input = ['temp' => round($climaAhora["main"]["temp"]),'cp' => $cp,'ciudad' => $ciudadNom];
+    // Subimos los datos a la BD
     Top5Climas::create($input);
     ?>
-    <img src="{{ asset('img/home/logo.png') }}" class="centerImg" id="logo">
+    <img src="{{ asset('img/home/logo.png') }}" class="centerImg" id="logoDatos">
     <p class="centerText" id="txtLogo">¡Que la lluvia no te pare!</p>
     <div class="row">
-        <div class="column-main recuadros">
+        <!-- Recuadro principa con los datos del CP indicado -->
+        <div class="column-main recuadros1">
             <div class="row mainInfoRow">
                 <div class="column2 colum2-60">
+                    <!-- Datos generales de la ciudad -->
                     <p class="ciudadInfo">Código postal: <b>{{$cp}}</b></p>
                     <p class="ciudadInfo">Ciudad: <b>{{$ciudadNom}}</b></p>
                 </div>
                 <div class="column2 colum2-40">
+                    <!-- Buscador -->
                     <form action=/data method="get" class="FormResultado" onsubmit="return validarHome()">
                         <button type="submit" class="btnBuscar"><img src="{{ asset('img/home/searchIcon.png') }}" id="searchIcon"></button>
                         <input type="number" name="cp" id="homeInput" class="buscadorDatos" placeholder="Buscar otra zona">
@@ -125,10 +131,11 @@
             </div>
             <!-- Información del clima -->
             <div class="row heightRow">
-                <div class="vl vlPos1">
+                <div class="vl vlPos1 movilHidden">
                 </div>
-                <div class="vl vlPos2"></div>
+                <div class="vl vlPos2 movilHidden"></div>
                 <div class="mainClimaCol">
+                    <!-- Datos de hoy -->
                     <p class="centerText tituloSec">Ahora</p>
                     <div class="row">
                         <div class="hoyCol">
@@ -141,6 +148,8 @@
                     </div>
                 </div>
                 <div class="hoyClimaCol">
+                    <!-- Datos de las proximas horas -->
+                    <hr class='lVertical deskHidden'>
                     <p class="centerText tituloSec">Próximas horas</p>
                     <div class="row">
                         <div class="vl vlPosHoras1"></div>
@@ -148,14 +157,21 @@
                         <div class="vl vlPosHoras3"></div>
                         <?php CalcularClima($climaDato);?>
                     </div>
+                    <hr class='lVertical deskHidden'>
                 </div>
                 <div class="nextClimaCol">
+                    <!-- Datos de los proximos 5 dias -->
                     <p class="centerText tituloSec">Próximos 5 días</p>
                     {{calcularDias($climaDato,$cp,$ciudadNom);}}
+                    <div class="vlNext vlPosHoras4 deskHidden"></div>
+                    <div class="vlNext vlPosHoras5 deskHidden"></div>
+                    <div class="vlNext vlPosHoras6 deskHidden"></div>
+                    <div class="vlNext vlPosHoras7 deskHidden"></div>
                 </div>
             </div>
         </div>
-        <div class="column-top5 recuadros">
+        <div class="column-top5 recuadros2">
+            <!-- Top5 -->
             <h1 class="top5Titulo">Top 5 de las zonas más frías según tus búsquedas</h1>
             <?php
                     for ($i=0; $i < 5; $i++) { 
@@ -169,7 +185,11 @@
                                 echo "<p class='top5Pos'>".$topPos.". </p>";
                             echo"</div>";
                             echo'<div class="columnTop2">';
-                                echo "<p class='top5Temp'>".$temp."º</p>";
+                                if ($temp == "99") {
+                                    echo "<p class='top5Temp'>--</p>";
+                                }else{
+                                    echo "<p class='top5Temp'>".$temp."º</p>";
+                                }
                             echo"</div>";
                             echo'<div class="columnTop3">';
                                 echo "<p class='ciudadInfoTop5'>CP: <b>".$codCP."</b></p>";
@@ -183,6 +203,7 @@
                 ?>
         </div>
     </div>
+    <!-- Validación JavaScript del buscador -->
     <script src="js/home.js"></script>
 </body>
 </html>

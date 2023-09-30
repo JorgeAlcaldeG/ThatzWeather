@@ -1,3 +1,4 @@
+/* Estilos generales */
 *{
     font-family: 'Handjet', cursive;
     font-family: 'Mulish', sans-serif;
@@ -5,6 +6,9 @@
 }
 *:focus{
     outline: none;
+}
+.deskHidden{
+    visibility:hidden;
 }
 .row:after {
     content: "";
@@ -43,6 +47,10 @@ input::-webkit-inner-spin-button {
 }
 /* Home page */
 #logo{
+    width: 30%;
+    margin-top: 4%;
+}
+#logoDatos{
     width: 30%;
     margin-top: 4%;
 }
@@ -124,6 +132,7 @@ input::-webkit-inner-spin-button {
     font-size: 20px;
     padding-left: 16%;
 }
+/* Estilo del for */
 .FormResultado{
     margin-left: 5%;
     float: left;
@@ -140,7 +149,16 @@ input::-webkit-inner-spin-button {
     margin-left: 50%;
 }
 /* Estructura principal de recuadros */
-.recuadros{
+.recuadros1{
+    -webkit-box-shadow: 0px 0px 14px 8px rgba(0,0,0,0.19);
+    -moz-box-shadow: 0px 0px 14px 8px rgba(0,0,0,0.19);
+    box-shadow: 0px 0px 14px 8px rgba(0,0,0,0.19);
+    border-radius: 6px;
+    background-color: #487882;
+    text-align: center;
+    height:57vh;
+}
+.recuadros2{
     -webkit-box-shadow: 0px 0px 14px 8px rgba(0,0,0,0.19);
     -moz-box-shadow: 0px 0px 14px 8px rgba(0,0,0,0.19);
     box-shadow: 0px 0px 14px 8px rgba(0,0,0,0.19);
@@ -305,6 +323,7 @@ input::-webkit-inner-spin-button {
     padding-right: .5%;
 }
 .top5Row{
+    padding-top: 2%;
     background-color: #3b737e;
     float: right;
 }
@@ -335,6 +354,7 @@ input::-webkit-inner-spin-button {
     margin-left: 5%;
     opacity: .4;
 }
+/* Posición de las columnas de Top5 */
 .columnTop1{
     width: 10%;
     float: left;
@@ -377,6 +397,16 @@ input::-webkit-inner-spin-button {
 }
 
 @media only screen and (max-width: 600px) {
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    .movilHidden{
+        visibility:hidden;
+    }
+    .deskHidden{
+        visibility:visible;
+    }
     /* Página home */
     #homeText{
         margin-left: 5%;
@@ -408,5 +438,104 @@ input::-webkit-inner-spin-button {
         margin-left: 5%;
         margin-right: 5%;
         margin-bottom: 3.5%;
+    }
+    /* Datos */
+    .vl{
+        height: 60%;
+    }
+    .vlNext{
+        border-left: 2px solid white;
+        margin-top: 2.8%;
+        position: absolute;
+        opacity: .3;
+        height: 26%;
+        top: 6%;
+    }
+    .vlPosHoras4{
+        margin-top: 6%;
+        margin-left: 20%;
+    }
+    .vlPosHoras5{
+        margin-top: 6%;
+        margin-left: 40%;
+    }
+    .vlPosHoras6{
+        margin-top: 6%;
+        margin-left: 60%;
+    }
+    .vlPosHoras7{
+        margin-top: 6%;
+        margin-left: 80%;
+    }
+    #logoDatos{
+        width: 70%;
+    }
+    #txtLogo{
+        padding-top: 0%;
+        margin-top: 0%;
+        margin-bottom: 15%;
+        font-size: 15px;
+        padding-left: 32%;
+    }
+    .ciudadInfo{
+        margin-bottom: 0%;
+        margin-top: 2%;
+        text-align: left;
+        font-size: 15px;
+        padding-top: 0;
+        margin-left: 5%;
+    }
+    .column-main{
+        width: 100%;
+        margin-left: 0%;
+    }
+    .iconHoy{
+        padding-top: 0%;
+        padding-right: 0%;
+    }
+    .hoyCol{
+        margin-top: 2%;
+    }
+    /* Top5 */
+    .column-top5{
+        width: 100%;
+        margin-top: 4%;
+        margin-left: 0%;
+        height: 10vh;
+    }
+
+    .recuadros1{
+        background-color: #487882be;
+        height: 114vh;
+        margin-bottom: 5%;
+        border-radius: 2px;
+    }
+    .recuadros2{
+        background-color: #487882be;
+        height: 54vh;
+        border-radius: 2px;
+    }
+    .top5Titulo{
+        font-size: 18px;
+        margin-left: 17%;
+        margin-right: 17%;
+        font-weight: normal;
+    }
+    .mainClimaCol{
+        width: 100%;
+        height: 20%;
+    }
+    .hoyClimaCol{
+        margin-top: 25%;
+        width: 100%;
+        height: 34vh;
+    }
+    .nextClimaCol{
+        margin-top: 0%;
+        padding-left: 0%;
+        width: 100%;
+    }
+    .top5Row{
+        height: 25.5vh;
     }
 }

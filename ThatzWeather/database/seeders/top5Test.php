@@ -14,30 +14,12 @@ class top5Test extends Seeder
     public function run()
     {
 
-        Top5Climas::create([
-            'temp'=> '15',
-            'cp'=> '08907',
-            'ciudad'=> 'Barcelona',
-        ]);
-        Top5Climas::create([
-            'temp'=> '23',
-            'cp'=> '36161',
-            'ciudad'=> 'Pontevedra',
-        ]);
-        Top5Climas::create([
-            'temp'=> '-5',
-            'cp'=> '04004',
-            'ciudad'=> 'Almería',
-        ]);
-        Top5Climas::create([
-            'temp'=> '26',
-            'cp'=> '25199',
-            'ciudad'=> 'Lleida',
-        ]);
-        Top5Climas::create([
-            'temp'=> '22',
-            'cp'=> '37008',
-            'ciudad'=> 'Salamanca',
-        ]);
+        for ($i=0; $i < 5; $i++) { 
+            Top5Climas::create([
+                'temp'=> '99',
+                'cp'=> '00000',
+                'ciudad'=> 'Sin información',
+            ]);
+        }
     }
 }

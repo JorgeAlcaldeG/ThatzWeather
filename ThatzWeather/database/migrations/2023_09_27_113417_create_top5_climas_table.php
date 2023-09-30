@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Top5Climas;
 
 class CreateTop5ClimasTable extends Migration
 {
@@ -20,6 +21,13 @@ class CreateTop5ClimasTable extends Migration
             $table->string('ciudad');
             $table->timestamps();
         });
+        for ($i=0; $i < 5; $i++) { 
+            Top5Climas::create([
+                'temp'=> '99',
+                'cp'=> '00000',
+                'ciudad'=> 'Sin información',
+            ]);
+        }
     }
 
     /**
