@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.svg') }}" type="image/x-icon">
     <title>ThatzWeather</title>
 </head>
 <body>
     <?php
     // Comprobamos si se envían datos
-    if(empty($_GET) || $_GET["cp"]==""){
+    if(empty($_GET) || $_GET["cp"]=="" || strlen($_GET["cp"])!=5){
         header("Location: /");
         exit();
     }
